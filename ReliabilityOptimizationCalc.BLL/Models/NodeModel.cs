@@ -4,16 +4,23 @@ namespace ReliabilityOptimizationCalc.BLL.Models;
 
 public class NodeModel
 {
-    private decimal TimeToLiveConf;
+    public int Id { get; }
+    
+    //backup
+    public decimal TimeToLiveExtra { get; }
+    
+    //original
     public decimal TimeToLive { get; }
     
     public decimal Cost { get; }
 
-    public NodeModel(decimal timeToLiveConf, decimal cost)
+    public NodeModel(int id, decimal timeToLive, decimal timeToLiveExtra, decimal cost)
     {
+        Id = id;
+        
         Cost = cost;
         
-        TimeToLiveConf = timeToLiveConf;
-        TimeToLive = NodeTimeToLiveCalculator.GetTtl(TimeToLiveConf);
+        TimeToLive = timeToLive;
+        TimeToLiveExtra = timeToLiveExtra; //NodeTimeToLiveCalculator.GetTtl(TimeToLiveConf);
     }
 }
